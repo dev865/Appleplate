@@ -1,4 +1,4 @@
-package com.team.appleplate.global.util.exception;
+package com.team.appleplate.global.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

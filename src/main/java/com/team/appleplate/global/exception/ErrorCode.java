@@ -1,4 +1,4 @@
-package com.team.appleplate.global.util.exception;
+package com.team.appleplate.global.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
