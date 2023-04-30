@@ -3,6 +3,7 @@ package com.team.appleplate.domain.member.controller;
 import com.team.appleplate.domain.member.dto.MemberResponseDto;
 import com.team.appleplate.domain.member.dto.MemberSignupRequestDto;
 import com.team.appleplate.domain.member.service.LoginService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,10 +19,11 @@ import java.net.URI;
 public class LoginController {
     private final LoginService loginService;
 
-    @PostMapping("/join")
-    public ResponseEntity<MemberResponseDto> joinMember(@Valid @RequestBody MemberSignupRequestDto memberRequestDto){
+    @PostMapping("/signup")
+    @ApiOperation(value = "회원가입 기능",notes = "name, email, password를 입력받아 회원가입")
+    public ResponseEntity<MemberResponseDto> signupMember(@Valid @RequestBody MemberSignupRequestDto signupRequest){
 
-        MemberResponseDto memberResponseDto = loginService.joinMember(memberRequestDto);
+        MemberResponseDto memberResponseDto = loginService.signupMember(signupRequest);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
