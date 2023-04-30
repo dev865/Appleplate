@@ -36,14 +36,14 @@ public class PrincipalDetailsService implements UserDetailsService, LoginService
     }
 
     @Override
-    public MemberResponseDto joinMember(MemberSignupRequestDto memberJoinRequestDto){
+    public MemberResponseDto signupMember(MemberSignupRequestDto signupRequest){
 
-        if(isDuplicateMember(memberJoinRequestDto.getEmail())){
+        if(isDuplicateMember(signupRequest.getEmail())){
             throw new MemberDuplicateException(ErrorCode.DUPLICATE_ACCOUNT);
         }
 
-        memberJoinRequestDto.setPassword(encoder.encode(memberJoinRequestDto.getPassword()));
-        Member member = memberRepository.save(memberJoinRequestDto.toEntity());
+        signupRequest.setPassword(encoder.encode(signupRequest.getPassword()));
+        Member member = memberRepository.save(signupRequest.toEntity());
         return new MemberResponseDto(member);
 
     }
