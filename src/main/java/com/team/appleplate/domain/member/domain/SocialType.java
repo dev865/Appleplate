@@ -1,4 +1,5 @@
 package com.team.appleplate.domain.member.domain;
 
-public class Do {
+public enum SocialType {
+    applePlate,kakao;
 }
