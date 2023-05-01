@@ -39,4 +39,5 @@ out/
 ### Mac ###
 .DS_Store
 
-
+### Querydsl
+/src/main/generated
