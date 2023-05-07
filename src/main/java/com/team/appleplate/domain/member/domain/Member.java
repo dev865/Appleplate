@@ -62,4 +62,8 @@ public class Member extends BaseTimeEntity {
         this.socialId   = socialId;
 
     }
+
+    public void withdrawMember(){
+        this.actYn = 'N';
+    }
 }
