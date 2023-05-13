@@ -4,7 +4,10 @@ import com.team.appleplate.domain.menu.domain.Menu;
 import com.team.appleplate.domain.menu.repository.MenuRepository;
 import com.team.appleplate.domain.store.domain.Store;
 import com.team.appleplate.domain.store.dto.CreateStoreDto;
+import com.team.appleplate.domain.store.dto.StoreDto;
+import com.team.appleplate.domain.store.exception.StoreNotFoundException;
 import com.team.appleplate.domain.store.repository.StoreRepository;
+import com.team.appleplate.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,17 @@ public class StoreService {
         menus.forEach(menu -> menu.addStore(saveStore));
 
         menuRepository.saveAll(menus);
+    }
+
+    public StoreDto.Response getStoreDetail(Long id) {
+        Store store = getStore(id);
+
+        return StoreDto.Response.fromEntity(store);
+    }
+
+    public Store getStore(Long id) {
+        return storeRepository.findById(id)
+                .orElseThrow(() -> new StoreNotFoundException(ErrorCode.STORE_NOT_FOUND));
     }
 
 
