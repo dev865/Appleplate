@@ -3,8 +3,6 @@ package com.team.appleplate.domain.member.domain;
 import com.team.appleplate.domain.BaseTimeEntity;
 import com.team.appleplate.global.util.file.File;
 import lombok.*;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -14,7 +12,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EnableJpaAuditing
 public class Member extends BaseTimeEntity {
 
     @Id
