@@ -21,10 +21,6 @@ public class File extends BaseTimeEntity {
     private String savePath;
     private String originalFileName;
     private String fileName;
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    @Setter
-    private Member member;
 
     @Builder
     public File(final Long fileNo, final String savePath, final String originalFileName, final String fileName){
