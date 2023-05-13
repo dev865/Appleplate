@@ -27,8 +27,9 @@ public class Member extends BaseTimeEntity {
     private char holicYn;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "member")
-    private List<File> fileList = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "file_id")
+    private File file;
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
     private String socialId;
