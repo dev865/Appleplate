@@ -63,11 +63,6 @@ public class Member extends BaseTimeEntity {
 
     }
 
-    @Builder(builderClassName = "ReviewRegisterMemberId", builderMethodName = "ReviewRegisterMemberId")
-    public Member(final Long memberId){
-        this.id = memberId;
-    }
-
     public void withdrawMember(){
         this.actYn = 'N';
     }

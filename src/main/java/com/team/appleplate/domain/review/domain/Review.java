@@ -6,7 +6,6 @@ import com.team.appleplate.domain.member.domain.Member;
 import com.team.appleplate.domain.store.domain.Store;
 import com.team.appleplate.global.util.file.File;
 import lombok.*;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EnableJpaAuditing
 public class Review extends BaseTimeEntity {
 
     @Id

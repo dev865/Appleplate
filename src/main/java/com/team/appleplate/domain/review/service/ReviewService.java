@@ -1,10 +1,10 @@
 package com.team.appleplate.domain.review.service;
 
+import com.team.appleplate.domain.review.dto.ReviewCompleteCheckRequestDto;
+import com.team.appleplate.domain.review.dto.ReviewCompleteCheckResponseDto;
 import com.team.appleplate.domain.review.dto.ReviewRegisterRequestDto;
-
-
-import java.util.List;
+import com.team.appleplate.domain.review.dto.ReviewRegisterResponseDto;
 
 public interface ReviewService {
-    void register (ReviewRegisterRequestDto reviewRegisterRequestDto);
+    ReviewRegisterResponseDto register (ReviewRegisterRequestDto reviewRegisterRequestDto);
 }

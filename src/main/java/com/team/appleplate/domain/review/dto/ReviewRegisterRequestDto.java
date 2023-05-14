@@ -1,31 +1,26 @@
 package com.team.appleplate.domain.review.dto;
 
 
-import com.team.appleplate.domain.member.domain.Member;
-import com.team.appleplate.domain.review.domain.Review;
-import com.team.appleplate.domain.store.domain.Store;
-import com.team.appleplate.global.util.file.File;
 import lombok.Getter;
 
-import java.util.List;
 @Getter
 public class ReviewRegisterRequestDto {
-    private Long memberId;
-    private Long storeId;
-    private String content;
-    private String completeYn;
-    private double grade;
+    private final Long memberId;
+    private final Long storeId;
+    private final String content;
+    private final String completeYn;
+    private final double grade;
 
 //    파일 미적용
 //    private List<File> fileList;
 
-    public Review toEntity() {
-        return Review.builder()
-                        .member(Member.ReviewRegisterMemberId().memberId(memberId).build())
-                        .store(Store.ReviewRegisterStoreId().storeId(storeId).build())
-                        .content(content)
-                        .completeYn(completeYn)
-                        .grade(grade)
-                        .build();
+    public ReviewRegisterRequestDto(final Long memberId,final Long storeId,final String content,final String completeYn,final double grade) {
+        this.memberId = memberId;
+        this.storeId = storeId;
+        this.content = content;
+        this.completeYn = completeYn;
+        this.grade = grade;
     }
+
+
 }
