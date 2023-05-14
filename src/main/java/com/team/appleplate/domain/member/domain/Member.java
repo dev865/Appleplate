@@ -3,8 +3,6 @@ package com.team.appleplate.domain.member.domain;
 import com.team.appleplate.domain.BaseTimeEntity;
 import com.team.appleplate.global.util.file.File;
 import lombok.*;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -14,7 +12,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EnableJpaAuditing
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -27,8 +24,9 @@ public class Member extends BaseTimeEntity {
     private char holicYn;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "member")
-    private List<File> fileList = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "file_id")
+    private File file;
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
     private String socialId;
