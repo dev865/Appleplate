@@ -7,4 +7,5 @@ import com.team.appleplate.domain.review.dto.ReviewRegisterResponseDto;
 
 public interface ReviewService {
     ReviewRegisterResponseDto register (ReviewRegisterRequestDto reviewRegisterRequestDto);
+    ReviewCompleteCheckResponseDto completeCheck(ReviewCompleteCheckRequestDto reviewCompleteCheckRequestDto);
 }

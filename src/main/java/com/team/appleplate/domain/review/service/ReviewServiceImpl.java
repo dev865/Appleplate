@@ -44,7 +44,13 @@ public class ReviewServiceImpl implements ReviewService {
                                             .build());
 
         return new ReviewRegisterResponseDto(result);
-
-
     }
+
+    @Override
+    public ReviewCompleteCheckResponseDto completeCheck(ReviewCompleteCheckRequestDto reviewCompleteCheckRequestDto) {
+        Review review = queryRepository.completeCheck(reviewCompleteCheckRequestDto).orElseThrow();
+
+        return new ReviewCompleteCheckResponseDto(review);
+    }
+
 }

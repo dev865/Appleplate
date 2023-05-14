@@ -57,6 +57,12 @@ public class ReviewController {
 
     }
 
+    @GetMapping("/complete-check/{storeId}/{memberId}")
+    public ResponseEntity<ReviewCompleteCheckResponseDto> completeCheck(@PathVariable("storeId") Long storeId, @PathVariable("memberId") Long memberId) {
+        ReviewCompleteCheckResponseDto reviewCompleteCheckResponseDto = reviewService.completeCheck(new ReviewCompleteCheckRequestDto(storeId, memberId));
 
+        // return 주소 (호출한 주소로 미완성 리뷰 가져가기)
+        // ResponseEntity.ok()의 uri는 수정이 불가능한것같다.
+        return ResponseEntity.ok(reviewCompleteCheckResponseDto);
     }
 }
