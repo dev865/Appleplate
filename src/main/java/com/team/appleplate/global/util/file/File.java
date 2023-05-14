@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EnableJpaAuditing
 @Getter
 public class File extends BaseTimeEntity {
 
