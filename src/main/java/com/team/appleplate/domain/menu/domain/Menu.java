@@ -22,8 +22,6 @@ public class Menu {
 
     private String menuPrice;
 
-    private String menuCategory;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;

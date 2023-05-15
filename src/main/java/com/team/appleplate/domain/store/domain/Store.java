@@ -25,6 +25,8 @@ public class Store extends BaseTimeEntity {
 
     private String storeNumber;
 
+    private String storeCategory; // erd와 맞추기 위해 추가 Menu엔티티에 menuCategory를 변경 및 이동
+
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Menu> menus = new ArrayList<>();
 
