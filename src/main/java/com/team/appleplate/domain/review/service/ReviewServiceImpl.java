@@ -12,6 +12,7 @@ import com.team.appleplate.domain.review.dto.ReviewRegisterRequestDto;
 import com.team.appleplate.domain.review.dto.ReviewRegisterResponseDto;
 import com.team.appleplate.domain.review.repository.ReviewQueryRepository;
 import com.team.appleplate.domain.review.repository.ReviewRepository;
+import com.team.appleplate.domain.store.domain.Store;
 import com.team.appleplate.domain.store.exception.StoreNotFoundException;
 import com.team.appleplate.domain.store.repository.StoreRepository;
 import com.team.appleplate.global.exception.ErrorCode;
