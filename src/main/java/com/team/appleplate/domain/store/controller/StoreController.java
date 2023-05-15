@@ -19,6 +19,10 @@ public class StoreController {
     @GetMapping("/store/{id}")
     public StoreDto.Response getStoreDetail(@PathVariable Long id) {
         return storeService.getStoreDetail(id);
+    public ResponseEntity<Void> getStoreDetail(@PathVariable Long id) {
+        storeService.getStoreDetail(id);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/store")
