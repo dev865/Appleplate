@@ -50,4 +50,5 @@ public class Store extends BaseTimeEntity {
     @Embedded
     private Address address;
 
+
 }
