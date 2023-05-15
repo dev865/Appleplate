@@ -3,8 +3,10 @@ package com.team.appleplate.domain.store.service;
 import com.team.appleplate.domain.menu.domain.Menu;
 import com.team.appleplate.domain.menu.repository.MenuRepository;
 import com.team.appleplate.domain.store.domain.Store;
-import com.team.appleplate.domain.store.dto.CreateStoreDto;
-import com.team.appleplate.domain.store.dto.StoreDto;
+import com.team.appleplate.domain.store.dto.CreateStoreRequestDto;
+import com.team.appleplate.domain.store.dto.StoreResponseDto;
+import com.team.appleplate.domain.store.dto.UpdateStoreRequestDto;
+import com.team.appleplate.domain.store.exception.StoreDuplicateException;
 import com.team.appleplate.domain.store.exception.StoreNotFoundException;
 import com.team.appleplate.domain.store.repository.StoreRepository;
 import com.team.appleplate.global.exception.ErrorCode;
@@ -25,7 +27,7 @@ public class StoreService {
     /**
      * 가게 등록
      */
-    public void createStore(final CreateStoreDto.Request request) {
+    public void createStore(final CreateStoreRequestDto request) {
         existStoreName(request.getName());
 
         Store store = request.toEntity();
@@ -37,10 +39,22 @@ public class StoreService {
         menuRepository.saveAll(menus);
     }
 
-    public StoreDto.Response getStoreDetail(Long id) {
+    /**
+     * 가게 정보 수정
+     */
+    public void updateStore(final Long id, final UpdateStoreRequestDto request) {
+        Store findStore = getStore(id);
+        Store updateStore = findStore.updateStore(request);
+
+        List<Menu> menus = updateStore.getMenus();
+        menus.forEach(menu -> menu.addStore(updateStore));
+    }
+
+    @Transactional(readOnly = true)
+    public StoreResponseDto getStoreDetail(Long id) {
         Store store = getStore(id);
 
-        return StoreDto.Response.fromEntity(store);
+        return StoreResponseDto.fromEntity(store);
     }
 
     public Store getStore(Long id) {
@@ -48,12 +62,11 @@ public class StoreService {
                 .orElseThrow(() -> new StoreNotFoundException(ErrorCode.STORE_NOT_FOUND));
     }
 
-
     public void existStoreName(final String storeName) {
         List<Store> findStore = storeRepository.findByName(storeName);
 
         if (!findStore.isEmpty()) {
-            throw new IllegalStateException("이미 존재하는 식당입니다.");
+            throw new StoreDuplicateException(ErrorCode.DUPLICATE_STORE_NAME);
         }
     }
 

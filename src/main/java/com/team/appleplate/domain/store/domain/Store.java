@@ -2,11 +2,13 @@ package com.team.appleplate.domain.store.domain;
 
 import com.team.appleplate.domain.BaseTimeEntity;
 import com.team.appleplate.domain.menu.domain.Menu;
+import com.team.appleplate.domain.store.dto.UpdateStoreRequestDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -52,5 +54,23 @@ public class Store extends BaseTimeEntity {
     @Embedded
     private Address address;
 
+    /**
+     * 가게 수정
+     */
+    public Store updateStore(UpdateStoreRequestDto request) {
+        List<Menu> updateMenus = this.menus.stream().map(menu -> menu.updateMenu(request.getMenus())).collect(Collectors.toList());
+
+        this.name = request.getName();
+        this.storeNumber = request.getStoreNumber();
+        this.storeCategory = request.getStoreCategory();
+        this.menus = updateMenus;
+        this.priceRange = request.getPriceRange();
+        this.businessTime = request.getBusinessTime();
+        this.shopClosingDay = request.getShopClosingDay();
+        this.websiteAddress = request.getWebsiteAddress();
+        this.parkingYn = request.getParkingYn();
+
+        return this;
+    }
 
 }
