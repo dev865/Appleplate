@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER NOT FOUND"),
     DUPLICATE_ACCOUNT(HttpStatus.BAD_REQUEST,"USER EMAIL DUPLICATE" ),
+    DUPLICATE_STORE_NAME(HttpStatus.BAD_REQUEST, "STORE NAME DUPLICATE"),
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE NOT FOUND");
 
 
