@@ -1,6 +1,7 @@
 package com.team.appleplate.domain.store.controller;
 
 import com.team.appleplate.domain.store.dto.CreateStoreRequestDto;
+import com.team.appleplate.domain.store.dto.StoreResponseDto;
 import com.team.appleplate.domain.store.dto.UpdateStoreRequestDto;
 import com.team.appleplate.domain.store.service.StoreService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,10 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping("/store/{id}")
-    public ResponseEntity<Void> getStoreDetail(@PathVariable Long id) {
-        storeService.getStoreDetail(id);
+    public ResponseEntity<StoreResponseDto> getStoreDetail(@PathVariable Long id) {
+        StoreResponseDto storeDetail = storeService.getStoreDetail(id);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return new ResponseEntity<>(storeDetail, HttpStatus.OK);
     }
 
     @PostMapping("/store")
