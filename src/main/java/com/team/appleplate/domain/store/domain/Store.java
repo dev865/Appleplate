@@ -73,4 +73,12 @@ public class Store extends BaseTimeEntity {
         return this;
     }
 
+    /**
+     * 가게 삭제
+     */
+    public void deleteStore(Long id) {
+        this.name = "deleteStore" + id;
+        this.deleteYn = 'Y';
+    }
+
 }
