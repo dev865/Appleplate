@@ -1,7 +1,7 @@
 package com.team.appleplate.domain.store.dto;
 
 import com.team.appleplate.domain.menu.domain.Menu;
-import com.team.appleplate.domain.menu.dto.MenuDto;
+import com.team.appleplate.domain.menu.dto.MenuRequestDto;
 import com.team.appleplate.domain.store.domain.Address;
 import com.team.appleplate.domain.store.domain.AreaCategory;
 import com.team.appleplate.domain.store.domain.Store;
@@ -12,20 +12,20 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CreateStoreDto {
-
-    @Getter
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class Request {
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class CreateStoreRequestDto {
 
         @NotEmpty
         private String name;
 
         private String storeNumber;
 
-        private List<MenuDto.Request> menus;
+        private String storeCategory;
+
+        private List<MenuRequestDto> menus;
 
         private String priceRange;
 
@@ -44,11 +44,12 @@ public class CreateStoreDto {
         private Address address;
 
         public  Store toEntity() {
-            List<Menu> menus = this.menus.stream().map(menu -> menu.toEntity()).collect(Collectors.toList());
+            List<Menu> menus = this.menus.stream().map(MenuRequestDto::toEntity).collect(Collectors.toList());
 
             return Store.builder()
                     .name(this.getName())
                     .storeNumber(this.getStoreNumber())
+                    .storeCategory(this.getStoreCategory())
                     .menus(menus)
                     .priceRange(this.getPriceRange())
                     .businessTime(this.getBusinessTime())
@@ -59,6 +60,4 @@ public class CreateStoreDto {
                     .address(this.getAddress())
                     .build();
         }
-
-    }
 }

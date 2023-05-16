@@ -1,9 +1,11 @@
 package com.team.appleplate.domain.menu.domain;
 
+import com.team.appleplate.domain.menu.dto.MenuRequestDto;
 import com.team.appleplate.domain.store.domain.Store;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Builder
@@ -22,8 +24,6 @@ public class Menu {
 
     private String menuPrice;
 
-    private String menuCategory;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
@@ -35,4 +35,14 @@ public class Menu {
         this.store = store;
     }
 
+    /**
+     * 가게 메뉴 수정
+     */
+    public Menu updateMenu(List<MenuRequestDto> request) {
+        for (MenuRequestDto menuRequestDto : request) {
+            this.name = menuRequestDto.getName();
+            this.menuPrice = menuRequestDto.getMenuPrice();
+        }
+        return this;
+    }
 }

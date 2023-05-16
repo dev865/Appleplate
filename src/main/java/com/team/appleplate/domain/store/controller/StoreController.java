@@ -1,7 +1,8 @@
 package com.team.appleplate.domain.store.controller;
 
-import com.team.appleplate.domain.store.dto.CreateStoreDto;
-import com.team.appleplate.domain.store.dto.StoreDto;
+import com.team.appleplate.domain.store.dto.CreateStoreRequestDto;
+import com.team.appleplate.domain.store.dto.StoreResponseDto;
+import com.team.appleplate.domain.store.dto.UpdateStoreRequestDto;
 import com.team.appleplate.domain.store.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,16 +18,26 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping("/store/{id}")
-    public StoreDto.Response getStoreDetail(@PathVariable Long id) {
-        return storeService.getStoreDetail(id);
+    public ResponseEntity<StoreResponseDto> getStoreDetail(@PathVariable Long id) {
+        StoreResponseDto storeDetail = storeService.getStoreDetail(id);
+
+        return new ResponseEntity<>(storeDetail, HttpStatus.OK);
     }
 
     @PostMapping("/store")
-    public ResponseEntity<Void> createStore(@RequestBody @Valid CreateStoreDto.Request request) {
+    public ResponseEntity<Void> createStore(@RequestBody @Valid CreateStoreRequestDto request) {
         storeService.createStore(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
-
     }
 
+    @PutMapping("/store/{id}")
+    public ResponseEntity<Void> updateStore(
+            @PathVariable("id") Long id,
+            @RequestBody @Valid UpdateStoreRequestDto request) {
+
+        storeService.updateStore(id, request);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
 }
