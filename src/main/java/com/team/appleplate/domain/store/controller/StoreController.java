@@ -40,4 +40,11 @@ public class StoreController {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
+
+    @DeleteMapping("/store/{id}")
+    public ResponseEntity<Void> deleteStore(@PathVariable Long id) {
+        storeService.deleteStore(id);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
