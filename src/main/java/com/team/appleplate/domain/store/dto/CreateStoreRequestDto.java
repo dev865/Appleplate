@@ -56,6 +56,7 @@ public class CreateStoreRequestDto {
                     .shopClosingDay(this.getShopClosingDay())
                     .websiteAddress(this.getWebsiteAddress())
                     .parkingYn(this.getParkingYn())
+                    .deleteYn('N')
                     .areaCategory(this.getAreaCategory())
                     .address(this.getAddress())
                     .build();
