@@ -13,7 +13,7 @@ public enum ErrorCode {
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE NOT FOUND"),
     DELETED_STORE(HttpStatus.NOT_FOUND, "STORE HAS BEEN DELETED"),
     REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW NOT FOUND");
-    
+
     private final HttpStatus status;
     private final String message;
 }
