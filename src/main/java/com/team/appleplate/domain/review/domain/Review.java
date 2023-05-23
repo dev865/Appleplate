@@ -8,6 +8,7 @@ import com.team.appleplate.global.util.file.File;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,9 +33,8 @@ public class Review extends BaseTimeEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id", nullable = true)
-    private List<File> fileList;
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<File> fileList = new ArrayList<>();
 
     @Builder
     public Review(String content, double grade, String completeYn, Member member, Store store) {
@@ -43,6 +43,17 @@ public class Review extends BaseTimeEntity {
         this.completeYn = completeYn;
         this.member = member;
         this.store = store;
+    }
+
+    /**
+     * 리뷰의 fileList 저장 후 file.Review 저장
+     */
+    public void addFile(File file){
+        this.fileList.add(file);
+
+        if(file.getReview() != this){
+            file.addReview(this);
+        }
     }
 
 }

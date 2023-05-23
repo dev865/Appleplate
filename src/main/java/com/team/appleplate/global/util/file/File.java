@@ -24,6 +24,10 @@ public class File extends BaseTimeEntity {
     private String originalFileName;
     private String fileName;
 
+    @ManyToOne
+    @JoinColumn(name="review_id")
+    private Review review;
+
     @Builder
     public File(final Long fileNo, final String savePath, final String originalFileName, final String fileName){
         this.fileNo = fileNo;
@@ -33,5 +37,10 @@ public class File extends BaseTimeEntity {
     }
 
 
+    /**
+     * 리뷰 등록
+     */
+    public void addReview(Review review) {
+        this.review = review;
     }
 }
