@@ -1,7 +1,11 @@
 package com.team.appleplate.domain.review.dto;
 
 
+import com.team.appleplate.global.util.file.File;
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 public class ReviewRegisterRequestDto {
@@ -11,9 +15,6 @@ public class ReviewRegisterRequestDto {
     private final String completeYn;
     private final double grade;
 
-//    파일 미적용
-//    private List<File> fileList;
-
     public ReviewRegisterRequestDto(final Long memberId,final Long storeId,final String content,final String completeYn,final double grade) {
         this.memberId = memberId;
         this.storeId = storeId;
@@ -21,6 +22,4 @@ public class ReviewRegisterRequestDto {
         this.completeYn = completeYn;
         this.grade = grade;
     }
-
-
 }
